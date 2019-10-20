@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import average_precision_score
+import matplotlib.pyplot as plt
 
 def haversine_distance(lat1, lon1, lat2, lon2, earth_radius=6371.0):
     """
@@ -73,3 +76,29 @@ def get_trip_distance(data, code):
 
     distance = haversine_distance(data['lat1'],data['lon1'],data['lat2'],data['lon2'])
     return list(distance)
+
+def plot_precision_recall_curve(y_target, y_score, ax=None):
+    """Plot the Precision-Recall curve
+
+    Parameters
+    ----------
+    y_target : list of float
+        Target value of classicifation
+    y_score : list of float
+        Predicted score of correspoding each target
+
+    Returns
+    ------
+    ax: matplotlib.axes
+        an AxesSubplot with the plot
+    """
+    ax = ax or plt.gca()
+    precision, recall, _ = precision_recall_curve(y_target, y_score)
+    ax.step(recall, precision, color='b', 
+            alpha=0.2, where='post')
+    ax.set(ylabel='Precision', xlabel='Recall', 
+           xlim = [0.0, 1.0], ylim = [0.0, 1.05],
+           title = '2-class Precision-Recall curve: AP={0:0.2f}'.format(
+               average_precision_score(y_target, y_score)))
+
+    return ax
