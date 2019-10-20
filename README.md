@@ -85,10 +85,12 @@ model.ipynb
 - Usually user activities and trip plans shows seasonality
 - This dataset has short period of time, so I added the
 
-(1) Day of week for each datetime columns<br>
-(2) 'Hours' of 'ts'<br>
-(3) 'Days' for each datetime columns<br>
-(4) 'trip_duration' in days<br>
+```
+(1) Day of week for each datetime columns
+(2) 'Hours' of 'ts'
+(3) 'Days' for each datetime columns
+(4) 'trip_duration' in days
+```
 
 [4] Add distance in km (haversine distance)
 
@@ -99,16 +101,18 @@ To keep the datatype, featured data save to parquet
 
 
 ### 4. Train / Test Split
-
-A. Target value is highly imbalanced. (1808 / 45177) 3.8% <Br>
-B. The ratio of booked users / searched users is slightly better than the target value ratio. (1804 / 29361) 5.7% <br>
-C. Activity ratio of booked users / searched users is much better. (9486 / 37499) 20.2% <br>
-
+```
+A. Target value is highly imbalanced. (1808 / 45177) 3.8%
+B. The ratio of booked users / searched users is slightly better than the target value ratio. (1804 / 29361) 5.7%
+C. Activity ratio of booked users / searched users is much better. (9486 / 37499) 20.2%
+```
 
 #### Train / Test Split should have the similar distribution
-- 1) Select randomly booked user in 20% and searched users in 20% as Test user
-- 2) Split Train / Test data based on train / test userid
- 
+```
+[1] Select randomly booked user in 20% and searched users in 20% as Test user
+[2] Split Train / Test data based on train / test userid
+```
+
 ### 5. Feature Selection
 
 ##### Select important features using tree based classfier 
