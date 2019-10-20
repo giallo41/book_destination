@@ -102,3 +102,33 @@ def plot_precision_recall_curve(y_target, y_score, ax=None):
                average_precision_score(y_target, y_score)))
 
     return ax
+
+
+def plot_feature_selection(classifier, features, ax=None):
+    """Plot the Precision-Recall curve
+
+    Parameters
+    ----------
+    classifier : sklearn classifier object 
+        classifier must be fitted before passing
+    features : list of string
+        list of features
+
+    Returns
+    ------
+    df : pandas DataFrame
+        feature importance dataframe
+    """
+    ax = ax or plt.gca()
+    df = pd.DataFrame()
+    df['feature'] = features
+    df['importance'] = classifier.feature_importances_
+    df=df.sort_values(by='importance', ascending=False)
+    
+    ax.barh(df['feature'], 
+            df['importance'], 
+            align='center')
+    ax.set(ylabel='feature', xlabel='importance', 
+           title = 'Feature Importance')
+
+    return df    

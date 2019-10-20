@@ -1,8 +1,63 @@
 # Data Science Task 
 
+----------------------
+
+created by Sue Hun Jung giallo.hos@gmail.com
+
+----------------------
+
 ## Goal 
+
+
 Identify users that will eventually book a trip to an advertised destination
 
+
+# [ Instruction ]
+
+### 1. Files and Folder 
+
+```
+project
+│   instruction.md
+│   model.ipynb
+|   preprocessing.ipynb
+│   readme.md
+│   requirements.txt
+│
+└─── data
+│   │   events.csv 
+│   │   events.parquet 
+│   └─  iata.csv
+│   
+└─── source
+    └─  utils.py   
+```
+
+## 2. requirements.txt 
+#### Requirements
+
+Model works in Python 3.7 or above version
+```
+pip install -r requirements.txt
+```
+
+## 2. How to run 
+[1] Line by line running jupyter notebook
+
+```
+model.ipynb 
+```
+
+[2] Data pre-proessing and eda
+
+```
+preprocessing.ipynb 
+```
+
+
+----------------------
+
+# [ Taks Results ]
 
 ### 1. Data pre-Processing 
 
@@ -33,4 +88,11 @@ Identify users that will eventually book a trip to an advertised destination
 (4) 'trip_duration' in days<br>
 
 [4] Add distance in km (haversine distance)
+
+
+### 3. Save Featured data
+
+To keep the datatype, featured data save to parquet
+
+
 
