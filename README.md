@@ -42,17 +42,20 @@ pip install -r requirements.txt
 ```
 
 ## 2. How to run 
-[1] Line by line running jupyter notebook
+
+[1] Data pre-proessing and eda
+
+```
+preprocessing.ipynb 
+```
+
+[2] Line by line running jupyter notebook
 
 ```
 model.ipynb 
 ```
 
-[2] Data pre-proessing and eda
 
-```
-preprocessing.ipynb 
-```
 
 
 ----------------------
@@ -95,4 +98,28 @@ preprocessing.ipynb
 To keep the datatype, featured data save to parquet
 
 
+### 4. Train / Test Split
 
+A. Target value is highly imbalanced. (1808 / 45177) 3.8% <Br>
+B. The ratio of booked users / searched users is slightly better than the target value ratio. (1804 / 29361) 5.7% <br>
+C. Activity ratio of booked users / searched users is much better. (9486 / 37499) 20.2% <br>
+
+
+#### Train / Test Split should have the similar distribution
+- 1) Select randomly booked user in 20% and searched users in 20% as Test user
+- 2) Split Train / Test data based on train / test userid
+ 
+### 5. Feature Selection
+
+##### Select important features using tree based classfier 
+
+##### 3 important features for decision are
+```
+[1] 'diff_ts' - time difference between actions for unique user
+[2] 'act_count' - number of activity for each unique users
+[3] 'trip_distance' - Trip distance between origin in destination in km
+```
+
+### 6. Model Selection
+
+Using cross_val_score, RandomForest Classifier is best score for training datasets 
