@@ -118,6 +118,14 @@ C. Activity ratio of booked users / searched users is much better. (9486 / 37499
 ##### Select important features using tree based classfier 
 
 ##### 3 important features for decision are
+
+| feature | importance | 
+|:--------|:--------:|
+| diff_ts | 0.267807 | 
+| act_count | 0.255858 | 
+| trip_distance | 0.063839 | 
+
+
 ```
 [1] 'diff_ts' - time difference between actions for unique user
 [2] 'act_count' - number of activity for each unique users
@@ -127,3 +135,9 @@ C. Activity ratio of booked users / searched users is much better. (9486 / 37499
 ### 6. Model Selection
 
 Using cross_val_score, RandomForest Classifier is best score for training datasets 
+
+| CrossVal_Score_Means | CrossVal_STD | Model |
+|:--------|:--------:|:--------:|
+| 0.956611 | 0.001405 | DecisionTree |
+| 0.970543 | 0.001858 | <b>RandomForest</b> |
+| 0.969933 | 0.001476 | GradientBoosting|
