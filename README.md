@@ -117,7 +117,7 @@ C. Activity ratio of booked users / searched users is much better. (9486 / 37499
 
 ##### Select important features using tree based classfier 
 
-##### 3 important features for decision are
+##### Three important features for decision are
 
 | feature | importance | 
 |:--------|:--------:|
@@ -141,3 +141,42 @@ Using cross_val_score, RandomForest Classifier is best score for training datase
 | 0.956611 | 0.001405 | DecisionTree |
 | 0.970543 | 0.001858 | <b>RandomForest</b> |
 | 0.969933 | 0.001476 | GradientBoosting|
+
+
+### 7. Model Training
+
+Using GridSearchCV, find the best param for Randomforest classifier <br>
+
+```
+'criterion': 'gini', 
+'max_depth': 9, 
+'max_features': 7, 
+'n_estimators': 100
+```
+
+| feature | importance | 
+|:--------|:--------:|
+| act_count | 0.391384| 
+| diff_ts | 0.385863 | 
+| trip_distance | 0.033221 | 
+
+Results are slightly different from the prvious feature selection 
+because of the reaulatized trainning. <br>
+
+
+### 8. Evaluation
+
+- Test Accuracy : 96.99%
+- Average Precision Score : 0.32 
+- Confusion Matrix
+
+| Labels | Predict 'search' | Predict 'book' |
+|:--------|:--------:|:--------:|
+| search | 8801 | 140 |
+| book | 140 | 222 |
+
+### 9. To-Do
+
+###### (1) If I could know user's attribute and historical activities, I could add that for user-attribute features.
+###### (2) If I could know the user's location(like Country), then I could add the holiday information for 'Origin' or 'Destination'
+###### (3) Under sampling can be used for imbalanced datasets

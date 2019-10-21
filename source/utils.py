@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import average_precision_score
+from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 
 def haversine_distance(lat1, lon1, lat2, lon2, earth_radius=6371.0):
@@ -131,4 +132,34 @@ def plot_feature_selection(classifier, features, ax=None):
     ax.set(ylabel='feature', xlabel='importance', 
            title = 'Feature Importance')
 
-    return df    
+    return df
+
+def get_confusion_matrix(y_target, y_score, labels=[]):
+    """Compute confusion matrix to evaluate the accuracy of a classification
+
+    Parameters
+    ----------
+    y_target : list of float
+        Target value of classicifation
+    y_score : list of float
+        Predicted score of correspoding each target
+    labels : list of string
+        labels name for classification
+
+    Returns
+    ------
+    matrix: pandas DataFrame
+        confusion matrix
+    """
+
+    np_matrix = confusion_matrix(y_target, y_score)
+    if len(labels) is 0:
+        labels = np.unique(y_target)
+
+    dic = {}
+    for idx, label in enumerate(labels):
+        dic['Predict '+label] = np_matrix[:,idx]
+    
+    matrix = pd.DataFrame(dic, index=labels)
+
+    return matrix
